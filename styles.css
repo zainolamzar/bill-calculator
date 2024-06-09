@@ -1,0 +1,4 @@
+.invisible-table {
+    border: none;
+    visibility: hidden;
+}

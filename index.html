@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Monthly Bill Calculator</h1>
+        <form id="billForm" class="mt-4">
+            <div class="form-group">
+                <table class="invisible-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="members">Number of Members</label>
+                            </td>
+                            <td>
+                                <textarea class="form-control" id="members" rows="1" placeholder="eg: 10"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table class="invisible-table mt-3">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="billsContainer">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <textarea class="form-control bill-label" id="billLabel1" rows="1" placeholder="eg: Water"></textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <textarea class="form-control bill-amount" id="billAmount1" rows="1" placeholder="eg: 990.90"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-secondary mb-3" id="addBillBtn">+</button>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+        <div id="result" class="mt-4">
+            <!-- Results here -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
