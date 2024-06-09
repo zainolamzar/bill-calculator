@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const amount = parseFloat(billAmounts[index].value);
             if (!isNaN(amount)) {
                 totalBill += amount;
-                billsSummary += `<li>${label.value}: $${amount.toFixed(2)}</li>`;
+                billsSummary += `<li>${label.value}: RM${amount.toFixed(2)}</li>`;
             }
         });
 
