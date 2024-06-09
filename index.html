@@ -30,6 +30,9 @@
                     <tr>
                         <th>Label</th>
                         <th>Amount</th>
+                        <th>
+                            <button type="button" class="btn btn-warning mb-3" id="clearAllBtn">Clear All</button>
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="billsContainer">
@@ -42,6 +45,11 @@
                         <td>
                             <div class="form-group">
                                 <textarea class="form-control bill-amount" id="billAmount1" rows="1" placeholder="eg: 990.90"></textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger btn-delete">Delete</button>
                             </div>
                         </td>
                     </tr>

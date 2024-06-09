@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let billCount = 1;
     const billsContainer = document.getElementById('billsContainer');
     const addBillBtn = document.getElementById('addBillBtn');
+    const clearAllBtn = document.getElementById('clearAllBtn');
 
     addBillBtn.addEventListener('click', () => {
         billCount++;
@@ -19,8 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <textarea class="form-control bill-amount" id="billAmount${billCount}" rows="1" placeholder="eg: 990.90"></textarea>
                 </div>
             </td>
+            <td>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger btn-delete">Delete</button>
+                </div>
+            </td>
         `;
         billsContainer.appendChild(newBillRow);
+    });
+
+    clearAllBtn.addEventListener('click', () => {
+        document.querySelectorAll('.bill-label').forEach(input => input.value = ''); // Clear all labels
+        document.querySelectorAll('.bill-amount').forEach(input => input.value = ''); // Clear all amounts
     });
 
     const form = document.getElementById('billForm');
@@ -60,5 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Average per Member:</strong> RM${(totalBill / members).toFixed(2)}</p>
             </div>
         `;
+    });
+
+    // Add event listener for delete buttons
+    document.addEventListener('click', event => {
+        if (event.target.classList.contains('btn-delete')) {
+            event.target.closest('tr').remove(); // Remove the closest row containing the delete button
+        }
     });
 });
