@@ -1,137 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Web Icon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="webicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="webicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="webicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="webicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="webicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="webicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="webicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="webicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="webicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="webicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="webicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="webicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="webicon/favicon-16x16.png">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="webicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Web Icon -->
+        <link rel="apple-touch-icon" sizes="57x57" href="webicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="webicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="webicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="webicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="webicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="webicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="webicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="webicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="webicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="webicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="webicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="webicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="webicon/favicon-16x16.png">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="webicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
 
-    <title>Bill Splitter</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container-fluid h-100">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-6">
-                <div class="container mt-5">
-                    <h1 class="text-center">Home Bill Splitter</h1>
-                    <form id="billForm" class="mt-4">
-                        <div class="form-group d-flex justify-content-center">
-                            <table class="invisible-table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label for="members">Members</label>
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control" id="members" rows="1" placeholder="10"></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="month">Month</label>
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control" id="month" rows="1" placeholder="January"></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="year">Year</label>
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control" id="year" rows="1" placeholder="2024"></textarea>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="billform-group d-flex justify-content-center">
-                            <table class="invisible-table mt-3">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Label</th>
-                                        <th>Amount (RM)</th>
-                                        <th>
-                                            <button type="button" class="btn btn-warning mb-3" id="clearAllBtn">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="billsContainer">
-                                    <tr>
-                                        <td>
-                                            <div class="form-group">
-                                                <textarea class="form-control bill-label" id="billLabel1" rows="1" placeholder="Water"></textarea>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <textarea class="form-control bill-amount" id="billAmount1" rows="1" placeholder="990.90"></textarea>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-danger btn-delete">
-                                                    <i class="fa-solid fa-eraser"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="button-group d-flex justify-content-center">
-                            <button type="button" class="btn btn-secondary px-3 mx-1" id="addBillBtn">
-                                <i class="fa-solid fa-square-plus"></i>
-                            </button>
-                            <button type="submit" class="btn btn-primary px-4 mx-1" id="calculateBtn">
-                                <i class="fa-solid fa-calculator"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <div id="result" class="mt-4">
-                        <!-- Results here -->
-                    </div>
-                    <div class="snapshot-div d-flex justify-content-center mb-3" id="snapshot">
-                        <button type="button" class="btn btn-success mt-3" id="snapshotBtn">
-                            <i class="fas fa-camera"></i> Capture & Share
-                        </button>
-                    </div>
+        <title>Bill Splitter</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <a href="homebill/homebill.html">
+            <div class="hb-card hb-playing">
+                <div class="hb-image"></div>
+                
+                <div class="hb-wave"></div>
+                <div class="hb-wave"></div>
+                <div class="hb-wave"></div>
+                
+                <div class="hb-infotop">
+                    <i class="fa-solid fa-house-chimney hb-icon"></i>
+                    <br>      
+                        Home Bill Splitter
+                    <br>
                 </div>
             </div>
-        </div>
-    </div>
+        </a>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
-</body>
+        <a href="payfirst/payfirst.html">
+            <div class="pf-card pf-playing">
+                <div class="pf-image"></div>
+                
+                <div class="pf-wave"></div>
+                <div class="pf-wave"></div>
+                <div class="pf-wave"></div>
+                
+                <div class="pf-infotop">
+                    <i class="fa-solid fa-mug-saucer pf-icon"></i>
+                    <br>      
+                        PayFirst Bill Splitter
+                    <br>
+                </div>
+            </div>
+        </a>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- html2canvas -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <!-- Custom JS -->
+        <script src="homebill.js"></script>
+    </body>
 </html>
