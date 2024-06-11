@@ -1,4 +1,9 @@
-.invisible-table {
-    border: none;
-    visibility: hidden;
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}  
+#snapshotBtn {
+    display: none;
 }

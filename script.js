@@ -130,6 +130,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+
+        // Show the snapshot button after displaying the result
+        document.getElementById('snapshotBtn').style.display = 'block';
+
+        // Scroll to the result div
+        document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('snapshotBtn').addEventListener('click', () => {
+        html2canvas(document.getElementById('result-detail')).then(canvas => {
+            // Convert the canvas to a data URL
+            const imgData = canvas.toDataURL('image/png');
+            
+            // Create an anchor element to trigger the download
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imgData;
+            downloadLink.download = 'capture.png';
+            downloadLink.click();
+    
+            // Optionally use the Web Share API to share the image
+            if (navigator.share) {
+                canvas.toBlob(blob => {
+                    const file = new File([blob], 'capture.png', { type: 'image/png' });
+                    navigator.share({
+                        title: 'My Capture',
+                        text: 'Check out this snapshot!',
+                        files: [file]
+                    }).then(() => {
+                        console.log('Successfully shared');
+                    }).catch(error => {
+                        console.error('Error sharing:', error);
+                    });
+                });
+            } else {
+                alert('Your browser does not support the Web Share API');
+            }
+        }).catch(error => {
+            console.error('Error capturing the div: ', error);
+        });
     });
 
     // Add event listener for delete buttons

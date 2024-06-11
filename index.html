@@ -27,6 +27,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container-fluid h-100">
@@ -105,13 +107,18 @@
                             <button type="button" class="btn btn-secondary px-3 mx-1" id="addBillBtn">
                                 <i class="fa-solid fa-square-plus"></i>
                             </button>
-                            <button type="submit" class="btn btn-primary px-4 mx-1">
+                            <button type="submit" class="btn btn-primary px-4 mx-1" id="calculateBtn">
                                 <i class="fa-solid fa-calculator"></i>
                             </button>
                         </div>
                     </form>
                     <div id="result" class="mt-4">
                         <!-- Results here -->
+                    </div>
+                    <div class="snapshot-div d-flex justify-content-center mb-3" id="snapshot">
+                        <button type="button" class="btn btn-success mt-3" id="snapshotBtn">
+                            <i class="fas fa-camera"></i> Capture & Share
+                        </button>
                     </div>
                 </div>
             </div>
