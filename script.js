@@ -89,20 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="result-amount mb-2 d-flex justify-content-center">
                     <table>
                         <tbody>
-                            <tr class="table-success">
-                                <td class="px-3">
-                                    <i class="fa-solid fa-user"></i>
-                                </td>
-                                <td class="px-3">
-                                    <p class="m-2"><strong>RM${(totalBill / members).toFixed(2)}</strong></p>
-                                </td>
-                            </tr>
                             <tr class="table-primary">
                                 <td class="px-3">
                                     <i class="fa-solid fa-users"></i>
                                 </td>
                                 <td class="px-3">
                                     <p class="m-2"><strong>RM${totalBill.toFixed(2)}</strong></p>
+                                </td>
+                            </tr>
+                            <tr class="table-success">
+                                <td class="px-3">
+                                    <i class="fa-solid fa-user"></i>
+                                </td>
+                                <td class="px-3">
+                                    <p class="m-2"><strong>RM${(totalBill / members).toFixed(2)}</strong></p>
                                 </td>
                             </tr>
                         </tbody>
