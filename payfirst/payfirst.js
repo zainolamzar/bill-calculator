@@ -148,4 +148,30 @@ function calculateBill() {
     `;
 
     resultDiv.appendChild(totalDiv);
+
+    document.getElementById('secondpart').style.display = 'none';
+
+    document.getElementById('thirdpart').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+function nextSecond() {
+    document.getElementById('firstpart').style.display = 'none';
+
+    document.getElementById('secondpart').style.display = 'block';
+    
+    document.getElementById('secondpart').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+function prevFirst() {
+    document.getElementById('secondpart').style.display = 'none';
+
+    document.getElementById('firstpart').style.display = 'block';
+
+    document.getElementById('firstpart').scrollIntoView({
+        behavior: 'smooth'
+    });
 }

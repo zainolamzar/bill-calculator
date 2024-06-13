@@ -33,42 +33,57 @@
     <body>
         <div class="container mt-4">
             <h2 class="text-center">PayFirst Bill Splitter</h2>
-            <div class="form-group">
-                <label for="itemList">Items List:</label>
-                <div id="itemList">
-                    <div class="row mb-1">
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Item">
-                        </div>
-                        <div class="col">
-                            <input type="number" class="form-control" placeholder="Quantity" min="1">
-                        </div>
-                        <div class="col">
-                            <input type="number" class="form-control" placeholder="Total Price" min="0">
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="col mb-2">
-                        <button class="btn btn-success" onclick="addItemRow()">+</button>
-                    </div>
-                </div>
+            
+            <div id="firstpart" class="mb-4">
                 <div class="form-group">
-                    <label for="taxPrice">Tax Price:</label>
-                    <input type="number" class="form-control" id="taxPrice" placeholder="Enter tax price" min="0">
+                    <label for="itemList">Items List:</label>
+                    <div id="itemList">
+                        <div class="row mb-1">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Item">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="Quantity" min="1">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="Total Price" min="0">
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col mb-2">
+                            <button class="btn btn-success" onclick="addItemRow()">+</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="taxPrice">Tax Price:</label>
+                        <input type="number" class="form-control" id="taxPrice" placeholder="Enter tax price" min="0">
+                    </div>
+                </div>
+                <div class="btn-part">
+                    <button id="firstNextBtn" onclick="nextSecond()">Next</button>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="numMembers">Number of Members:</label>
-                <input type="number" class="form-control" id="numMembers" placeholder="Enter number of members" min="1" onchange="generateMemberInputs()">
+
+            <div id="secondpart" class="mb-4">
+                <div class="form-group">
+                    <label for="numMembers">Number of Members:</label>
+                    <input type="number" class="form-control" id="numMembers" placeholder="Enter number of members" min="1" onchange="generateMemberInputs()">
+                </div>
+                <div id="memberNames"></div>
+                <button class="btn btn-primary mt-2" onclick="calculateBill()">Calculate</button>
+                <div class="btn-part">
+                    <button id="secondPrevBtn" onclick="prevFirst()">Prev</button>
+                </div>
             </div>
-            <div id="memberNames"></div>
-            <button class="btn btn-primary mt-2" onclick="calculateBill()">Calculate</button>
-            <div id="result">
-                <!-- Result here -->
+
+            <div id="thirdpart" class="mb-4">
+                <div id="result">
+                    <!-- Result here -->
+                </div>
             </div>
         </div>
 
