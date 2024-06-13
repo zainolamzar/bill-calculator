@@ -9,7 +9,7 @@ function generateMemberInputs() {
             <label for="member${i}">Name of Member ${i + 1}:</label>
             <input type="text" class="form-control" id="member${i}" placeholder="Enter name of member ${i + 1}">
             <div id="member${i}Items">
-                <div class="row mb-2">
+                <div class="row mb-1">
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Item">
                     </div>
@@ -17,9 +17,12 @@ function generateMemberInputs() {
                         <input type="number" class="form-control" placeholder="Quantity" min="1">
                     </div>
                     <div class="col">
-                        <button class="btn btn-success" onclick="addMemberItemRow(${i})">+</button>
+                        <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
                     </div>
                 </div>
+            </div>
+            <div class="col">
+                <button class="btn btn-success" onclick="addMemberItemRow(${i})">+</button>
             </div>
         `;
         memberNamesDiv.appendChild(memberDiv);
@@ -29,7 +32,7 @@ function generateMemberInputs() {
 function addItemRow() {
     const itemList = document.getElementById('itemList');
     const row = document.createElement('div');
-    row.classList.add('row', 'mb-2');
+    row.classList.add('row', 'mb-1');
     row.innerHTML = `
         <div class="col">
             <input type="text" class="form-control" placeholder="Item">
@@ -55,7 +58,7 @@ function removeItemRow(button) {
 function addMemberItemRow(memberIndex) {
     const memberItemsDiv = document.getElementById(`member${memberIndex}Items`);
     const row = document.createElement('div');
-    row.classList.add('row', 'mb-2');
+    row.classList.add('row', 'mb-1');
     row.innerHTML = `
         <div class="col">
             <input type="text" class="form-control" placeholder="Item">
@@ -87,7 +90,7 @@ function calculateBill() {
     const taxPrice = parseFloat(document.getElementById('taxPrice').value);
     const numMembers = document.getElementById('numMembers').value;
 
-    const members = []; // Expected output: member = [A, [Pizza, 1], 20.00]
+    const members = [];
     for (let i = 0; i < numMembers; i++) {
         const memberName = document.getElementById(`member${i}`).value;
         const memberItems = Array.from(document.getElementById(`member${i}Items`).getElementsByClassName('row')).map(row => {
@@ -128,7 +131,7 @@ function calculateBill() {
         memberDiv.innerHTML = `
             <h4>${member.name}</h4>
             <p>Items: ${itemListHtml}</p>
-            <p> Tax (Per Person): RM${taxPerPerson.toFixed(2)}</p>
+            <p>Tax (Per Person): RM${taxPerPerson.toFixed(2)}</p>
             <p>Total: RM${memberTotalWithTax.toFixed(2)}</p>
         `;
 
