@@ -78,11 +78,11 @@ function addMemberItemRow(memberIndex) {
 }
 
 function calculateBill() {
-    const itemList = Array.from(document.getElementById('itemList').getElementsByClassName('row')).map(row => {
-        const inputs = row.getElementsByTagName('input');
-        const item = inputs[0].value.trim();
-        const quantity = parseInt(inputs[1].value);
-        const totalPrice = parseFloat(inputs[2].value);
+    const itemList = Array.from(document.getElementById('itemList-tbody').getElementsByTagName('tr')).map(row => {
+        const cells = row.getElementsByTagName('td');
+        const item = cells[0].querySelector('input').value.trim();
+        const quantity = parseInt(cells[1].querySelector('input').value);
+        const totalPrice = parseFloat(cells[2].querySelector('input').value);
         return [item, quantity, totalPrice];
     });
 
@@ -97,10 +97,10 @@ function calculateBill() {
     const members = [];
     for (let i = 0; i < numMembers; i++) {
         const memberName = document.getElementById(`member${i}`).value;
-        const memberItems = Array.from(document.getElementById(`member${i}Items`).getElementsByClassName('row')).map(row => {
-            const inputs = row.getElementsByTagName('input');
-            const item = inputs[0].value.trim();
-            const quantity = parseInt(inputs[1].value);
+        const memberItems = Array.from(document.getElementById(`member${i}Items-tbody`).getElementsByTagName('tr')).map(row => {
+            const cells = row.getElementsByTagName('td');
+            const item = cells[0].querySelector('input').value.trim();
+            const quantity = parseInt(cells[1].querySelector('input').value);
             return [item, quantity];
         });
 
@@ -199,6 +199,11 @@ function calculateBill() {
                 </tr>
             </tbody>
         </table>
+        <div id="snapshotDiv" class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success mt-3" id="snapshotBtn" onClick="snapshotFunc()">
+                <i class="fas fa-camera"></i> Capture & Share
+            </button>
+        </div>
     `;
 
     resultDiv.appendChild(totalDiv);
@@ -228,4 +233,37 @@ function prevFirst() {
     document.getElementById('firstpart').scrollIntoView({
         behavior: 'smooth'
     });
+}
+
+function snapshotFunc() {
+        html2canvas(document.getElementById('result')).then(canvas => {
+            // Convert the canvas to a data URL
+            const imgData = canvas.toDataURL('image/png');
+            
+            // Create an anchor element to trigger the download
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imgData;
+            downloadLink.download = `payfirst.png`;
+            downloadLink.click();
+    
+            // Optionally use the Web Share API to share the image
+            if (navigator.share) {
+                canvas.toBlob(blob => {
+                    const file = new File([blob], 'payfirst.png', { type: 'image/png' });
+                    navigator.share({
+                        title: 'My Capture',
+                        text: 'Check out this snapshot!',
+                        files: [file]
+                    }).then(() => {
+                        console.log('Successfully shared');
+                    }).catch(error => {
+                        console.error('Error sharing:', error);
+                    });
+                });
+            } else {
+                alert('Your browser does not support the Web Share API');
+            }
+        }).catch(error => {
+            console.error('Error capturing the div: ', error);
+        });
 }
