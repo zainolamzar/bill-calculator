@@ -36,22 +36,34 @@
             
             <div id="firstpart" class="mb-4">
                 <div class="form-group">
-                    <label for="itemList">Items List:</label>
-                    <div id="itemList">
-                        <div class="row mb-1">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Item">
-                            </div>
-                            <div class="col">
-                                <input type="number" class="form-control" placeholder="Quantity" min="1">
-                            </div>
-                            <div class="col">
-                                <input type="number" class="form-control" placeholder="Total Price" min="0">
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
-                            </div>
-                        </div>
+                    <label for="itemList">Receipt</label>
+                    <div id="itemList" class="d-flex justify-content-center">
+                        <table class="mb-1 text-center">
+                            <thead>
+                                <tr>
+                                    <td>Item</td>
+                                    <td>Quantity</td>
+                                    <td>Total Price<br>(RM)</td>
+                                    <td>Clear All</td>
+                                </tr>
+                            </thead>
+                            <tbody id="itemList-tbody">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Item">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" placeholder="Quantity" min="1">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" placeholder="Total Price" min="0">
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div>
                         <div class="col mb-2">
@@ -64,19 +76,19 @@
                     </div>
                 </div>
                 <div class="btn-part">
-                    <button id="firstNextBtn" onclick="nextSecond()">Next</button>
+                    <button class="btn btn-info" id="firstNextBtn" onclick="nextSecond()">Next</button>
                 </div>
             </div>
 
             <div id="secondpart" class="mb-4">
-                <div class="form-group">
-                    <label for="numMembers">Number of Members:</label>
-                    <input type="number" class="form-control" id="numMembers" placeholder="Enter number of members" min="1" onchange="generateMemberInputs()">
+                <div class="row form-group">
+                    <label class="col" for="numMembers">Number of Members:</label>
+                    <input type="number" class="col form-control" id="numMembers" placeholder="10" min="1" onchange="generateMemberInputs()">
                 </div>
                 <div id="memberNames"></div>
-                <button class="btn btn-primary mt-2" onclick="calculateBill()">Calculate</button>
+                <button class="btn btn-primary my-2" onclick="calculateBill()">Calculate</button>
                 <div class="btn-part">
-                    <button id="secondPrevBtn" onclick="prevFirst()">Prev</button>
+                    <button class="btn btn-secondary" id="secondPrevBtn" onclick="prevFirst()">Prev</button>
                 </div>
             </div>
 

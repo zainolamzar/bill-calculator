@@ -6,22 +6,28 @@ function generateMemberInputs() {
         const memberDiv = document.createElement('div');
         memberDiv.classList.add('form-group');
         memberDiv.innerHTML = `
-            <label for="member${i}">Name of Member ${i + 1}:</label>
-            <input type="text" class="form-control" id="member${i}" placeholder="Enter name of member ${i + 1}">
-            <div id="member${i}Items">
-                <div class="row mb-1">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Item">
-                    </div>
-                    <div class="col">
-                        <input type="number" class="form-control" placeholder="Quantity" min="1">
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
-                    </div>
-                </div>
+            <div class="row mb-1">
+                <label class="col" for="member${i}">Name of Member ${i + 1}:</label>
+                <input type="text" class="col form-control" id="member${i}" placeholder="Name of member ${i + 1}">
             </div>
-            <div class="col">
+            <div class="row" id="member${i}Items">
+                <table class="col">
+                    <tbody id="member${i}Items-tbody">
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Item">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" placeholder="Quantity" min="1">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
                 <button class="btn btn-success" onclick="addMemberItemRow(${i})">+</button>
             </div>
         `;
@@ -30,22 +36,21 @@ function generateMemberInputs() {
 }
 
 function addItemRow() {
-    const itemList = document.getElementById('itemList');
-    const row = document.createElement('div');
-    row.classList.add('row', 'mb-1');
+    const itemList = document.getElementById('itemList-tbody');
+    const row = document.createElement('tr');
     row.innerHTML = `
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Item">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control" placeholder="Quantity" min="1">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control" placeholder="Total Price" min="0">
-        </div>
-        <div class="col">
-            <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
-        </div>
+            <td>
+                <input type="text" class="form-control" placeholder="Item">
+            </td>
+            <td>
+                <input type="number" class="form-control" placeholder="Quantity" min="1">
+            </td>
+            <td>
+                <input type="number" class="form-control" placeholder="Total Price" min="0">
+            </td>
+            <td>
+                <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
+            </td>
     `;
     itemList.appendChild(row);
 }
@@ -56,19 +61,18 @@ function removeItemRow(button) {
 }
 
 function addMemberItemRow(memberIndex) {
-    const memberItemsDiv = document.getElementById(`member${memberIndex}Items`);
-    const row = document.createElement('div');
-    row.classList.add('row', 'mb-1');
+    const memberItemsDiv = document.getElementById(`member${memberIndex}Items-tbody`);
+    const row = document.createElement('tr');
     row.innerHTML = `
-        <div class="col">
+        <td>
             <input type="text" class="form-control" placeholder="Item">
-        </div>
-        <div class="col">
+        </td>
+        <td>
             <input type="number" class="form-control" placeholder="Quantity" min="1">
-        </div>
-        <div class="col">
+        </td>
+        <td>
             <button class="btn btn-danger" onclick="removeItemRow(this)">-</button>
-        </div>
+        </td>
     `;
     memberItemsDiv.appendChild(row);
 }
@@ -116,23 +120,48 @@ function calculateBill() {
     const grandTotal = totalItemCost + taxPrice;
 
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = '';
+    resultDiv.innerHTML = `
+    `;
 
     members.forEach(member => {
         const memberTotalWithTax = member.total + taxPerPerson;
         const memberDiv = document.createElement('div');
         memberDiv.classList.add('mt-3');
+        memberDiv.classList.add('d-flex');
+        memberDiv.classList.add('justify-content-center');
 
         const itemListHtml = member.items.map(([item, quantity]) => {
             const itemPrice = itemPrices[item].toFixed(2);
-            return `${item} (${quantity} @ RM${itemPrice})`;
+            return `${item}(${quantity}) = RM${itemPrice})`;
         }).join(', ');
 
         memberDiv.innerHTML = `
-            <h4>${member.name}</h4>
-            <p>Items: ${itemListHtml}</p>
-            <p>Tax (Per Person): RM${taxPerPerson.toFixed(2)}</p>
-            <p>Total: RM${memberTotalWithTax.toFixed(2)}</p>
+            <table class="text-center">
+                <thead>
+                    <tr class="table-dark">
+                        <td><strong>Name</strong></td>
+                        <td><strong>Item(s)</strong></td>
+                        <td><strong>Tax Per Person<br>(RM)</strong></td>
+                        <td><strong>Price Per Person<br>(RM)</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p><strong>${member.name}</strong></p>
+                        </td>
+                        <td>
+                            <p>${itemListHtml}</p>
+                        </td>
+                        <td>
+                            <p>${taxPerPerson.toFixed(2)}</p>
+                        </td>
+                        <td>
+                            <p>${memberTotalWithTax.toFixed(2)}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         `;
 
         resultDiv.appendChild(memberDiv);
@@ -141,10 +170,35 @@ function calculateBill() {
     const totalDiv = document.createElement('div');
     totalDiv.classList.add('mt-3');
     totalDiv.innerHTML = `
-        <h4>Grand Total</h4>
-        <p>Total Cost of Items: RM${totalItemCost.toFixed(2)}</p>
-        <p>Tax: RM${taxPrice.toFixed(2)}</p>
-        <p>Grand Total: RM${grandTotal.toFixed(2)}</p>
+        <h4 class="text-center">Grand Total</h4>
+        <table class="text-center d-flex justify-content-center">
+            <tbody>
+                <tr>
+                    <td class="table-dark">
+                        <p><strong>Total Cost of<br>Items</strong></p>
+                    </td>
+                    <td>
+                        <p>RM${totalItemCost.toFixed(2)}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-dark">
+                        <p><strong>Tax</strong></p>
+                    </td>
+                    <td>
+                        <p>RM${taxPrice.toFixed(2)}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-dark">
+                        <p><strong>Grand Total</strong></p>
+                    </td>
+                    <td>
+                        <p>RM${grandTotal.toFixed(2)}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     `;
 
     resultDiv.appendChild(totalDiv);
