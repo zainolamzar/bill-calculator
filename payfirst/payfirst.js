@@ -132,7 +132,7 @@ function calculateBill() {
 
         const itemListHtml = member.items.map(([item, quantity]) => {
             const itemPrice = itemPrices[item].toFixed(2);
-            return `${item}(${quantity}) = RM${itemPrice})`;
+            return `${item}(${quantity}) = RM${itemPrice}`;
         }).join('<br>');
 
         memberDiv.innerHTML = `
@@ -203,6 +203,14 @@ function calculateBill() {
             <button type="button" class="btn btn-success mt-3" id="snapshotBtn" onClick="snapshotFunc()">
                 <i class="fas fa-camera"></i> Capture & Share
             </button>
+        </div>
+        <div id="btnDiv" class="my-2 d-flex justify-content-center">
+            <a href="../index.html">
+                <button class="btn btn-secondary mx-1">Back Home</button>
+            </a>
+            <a href="../payfirst/payfirst.html">
+                <button class="btn btn-primary mx-1">Calculate Again</button>
+            </a>
         </div>
     `;
 
