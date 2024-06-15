@@ -133,7 +133,7 @@ function calculateBill() {
         const itemListHtml = member.items.map(([item, quantity]) => {
             const itemPrice = itemPrices[item].toFixed(2);
             return `${item}(${quantity}) = RM${itemPrice})`;
-        }).join(', ');
+        }).join('<br>');
 
         memberDiv.innerHTML = `
             <table class="text-center">
